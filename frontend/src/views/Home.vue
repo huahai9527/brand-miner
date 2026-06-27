@@ -26,8 +26,8 @@
           v-for="item in history.slice(0, 3)"
           :key="item.task_id"
           :to="item.status === 'done' ? `/report/${item.task_id}` : `/analyzing/${item.task_id}`"
-          class="block px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)]
-                 hover:border-[var(--accent)]/30 transition-all group"
+          class="block px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] border-l-2 border-l-transparent
+                 hover:bg-[var(--bg-card-hover)] hover:border-l-[var(--accent)] cursor-pointer transition-all duration-200 ease-out group"
         >
           <div class="flex items-center justify-between">
             <div>

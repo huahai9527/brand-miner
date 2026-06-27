@@ -103,18 +103,18 @@
         <h2 class="text-lg font-semibold mb-4">细分方向全览</h2>
 
         <!-- 雷达图 -->
-        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 mb-6">
+        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 hover:border-[var(--accent)]/40 transition-all duration-200 mb-6 hover:border-[var(--accent)]/40 transition-all duration-200">
           <h3 class="text-sm font-medium text-[var(--text-secondary)] mb-3">TOP3 细分方向四维对比</h3>
           <div ref="radarRef" class="w-full h-80"></div>
         </div>
 
         <!-- 品牌真空 + 增长信号 -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-          <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4">
+          <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 hover:border-[var(--accent)]/40 transition-all duration-200">
             <h3 class="text-sm font-medium text-[var(--text-secondary)] mb-3">品牌真空度对比</h3>
             <BrandVacuumChart :data="brandVacuumData" />
           </div>
-          <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4">
+          <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 hover:border-[var(--accent)]/40 transition-all duration-200">
             <h3 class="text-sm font-medium text-[var(--text-secondary)] mb-3">增长趋势对比</h3>
             <GrowthChart :data="growthData" />
           </div>
@@ -124,7 +124,7 @@
       <!-- === 区块四：价格市场地图 === -->
       <section v-if="firstSubCategory">
         <h2 class="text-lg font-semibold mb-4">价格市场地图</h2>
-        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4">
+        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 hover:border-[var(--accent)]/40 transition-all duration-200">
           <h3 class="text-sm font-medium text-[var(--text-secondary)] mb-3">
             均价 ¥{{ firstSubCategory.avg_price }}
             · 建义入场 ¥{{ firstSubCategory.suggested_price_entry }}
@@ -139,7 +139,7 @@
       <!-- === 区块五：用户痛点词云 === -->
       <section>
         <h2 class="text-lg font-semibold mb-4">用户痛点关键词</h2>
-        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4">
+        <div class="rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-4 hover:border-[var(--accent)]/40 transition-all duration-200">
           <PainPointCloud :painPoints="allPainPoints" />
         </div>
       </section>

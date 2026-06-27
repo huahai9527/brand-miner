@@ -6,7 +6,8 @@
 -->
 <template>
   <div
-    class="rounded-xl bg-[var(--bg-card)] border transition-all duration-300 animate-slide-in-right"
+    class="rounded-xl bg-[var(--bg-card)] border transition-all duration-200 ease-out animate-slide-in-right cursor-pointer
+           hover:border-[var(--accent)] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]"
     :class="[
       compact ? 'p-3' : 'p-4',
       recommendation === 'recommended'
