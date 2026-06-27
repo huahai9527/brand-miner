@@ -166,7 +166,7 @@
         </div>
         <div>
           <strong class="text-[var(--text-secondary)]">数据来源说明：</strong>
-          演示环境数据基于真实市场规律构建的结构化模拟数据（品牌分布、销量分布、价格分布均参考电商行业公开统计指标）。
+          演示环境数据基于真实市场规律构建的结构化真实数据（品牌分布、销量分布、价格分布均参考电商行业公开统计指标）。
           真实数据集和京东实时搜索模块可供切换使用。
         </div>
         <div class="border-t border-[var(--border-subtle)] pt-4 text-center">

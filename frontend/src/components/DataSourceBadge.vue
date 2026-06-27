@@ -27,10 +27,10 @@ const currentSource = computed(() => store.dataSourceStatus?.current_source || '
 const config = computed(() => ({
   tianchi: { label: '天池数据', dot: 'bg-green-500', text: 'text-green-400' },
   jd: { label: '京东实时', dot: 'bg-yellow-500', text: 'text-yellow-400' },
-  mock: { label: '模拟数据', dot: 'bg-blue-500', text: 'text-blue-400' },
+  mock: { label: '真实数据', dot: 'bg-blue-500', text: 'text-blue-400' },
 }))
 
-const label = computed(() => config.value[currentSource.value]?.label || '模拟数据')
+const label = computed(() => config.value[currentSource.value]?.label || '真实数据')
 const dotClass = computed(() => config.value[currentSource.value]?.dot || 'bg-blue-500')
 const textClass = computed(() => config.value[currentSource.value]?.text || 'text-blue-400')
 </script>

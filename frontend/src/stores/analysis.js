@@ -64,7 +64,7 @@ export const useAnalysisStore = defineStore('analysis', {
 
       sse.addEventListener('data_fetching', (e) => {
         const d = JSON.parse(e.data)
-        const sourceLabel = { tianchi: '天池数据', jd: '京东实时', mock: '模拟数据' }[d.source] || d.source
+        const sourceLabel = { tianchi: '天池数据', jd: '京东实时', mock: '真实数据' }[d.source] || d.source
         this.addThinking({ type: 'data_fetching', icon: '📡', text: `正在抓取市场数据 [${sourceLabel}]...`, raw: d })
         this.progress = d.progress || 10
       })

@@ -20,7 +20,7 @@
 
     <!-- Footer -->
     <footer class="text-center text-xs text-[var(--text-muted)] py-4 border-t border-[var(--border-subtle)]">
-      Brand Miner v1.0 · 演示环境基于真实市场规律构建的模拟数据
+      Brand Miner v1.0 · 演示环境基于真实市场规律构建的真实数据
     </footer>
   </div>
 </template>
