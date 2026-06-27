@@ -22,9 +22,13 @@ JD_CACHE_PATH = os.getenv("JD_CACHE_PATH", str(BASE_DIR / "data" / "cache"))
 USE_MOCK_FALLBACK = os.getenv("USE_MOCK_FALLBACK", "true").lower() == "true"
 
 # --- 数据库配置 ---
+# 确保 data/ 目录存在（云端环境需要）
+_DB_DIR = BASE_DIR / "data"
+_DB_DIR.mkdir(parents=True, exist_ok=True)
+
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    f"sqlite+aiosqlite:///{BASE_DIR / 'data' / 'brand_miner.db'}"
+    f"sqlite+aiosqlite:///{_DB_DIR / 'brand_miner.db'}"
 )
 
 # --- 服务配置 ---
