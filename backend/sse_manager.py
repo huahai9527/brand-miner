@@ -97,6 +97,7 @@ class SSEManager:
                 "avg_price": data.get("avg_price", 0),
                 "suggested_price_entry": data.get("suggested_price_entry", 0),
                 "suggested_price_premium": data.get("suggested_price_premium", 0),
+                "price_distribution": data.get("price_distribution", []),
                 "top_pain_points": data.get("top_pain_points", []),
             }
             # Update existing entry or append new

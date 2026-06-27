@@ -58,18 +58,116 @@ BUILTIN_KNOWLEDGE = {
             {"name": "装饰摆件", "rate": 0.20},
         ],
     ),
-    "办公": CategoryKnowledge(
-        name="办公",
-        sub_directions=["文具", "桌面收纳", "人体工学椅", "显示器支架", "键盘鼠标", "台灯", "白板贴纸", "会议设备"],
+    "速食": CategoryKnowledge(
+        name="速食",
+        sub_directions=["方便面", "自热食品", "速冻食品", "冲泡粥/米饭", "螺蛳粉", "速食汤"],
+        known_brands=["康师傅", "统一", "海底捞", "自嗨锅", "三全", "思念", "好欢螺", "李子柒", "白象", "五谷道场", "莫小仙", "拉面说"],
+        pain_points=["量太少", "口味不正宗", "面饼太小", "包装破损", "不够辣", "太咸", "配料少", "不新鲜", "打开麻烦", "吃不完浪费"],
+        price_range=(3, 80, 20),
+        growth_scenarios=[
+            {"name": "自热食品", "rate": 0.60},
+            {"name": "螺蛳粉", "rate": 0.75},
+            {"name": "速冻食品", "rate": 0.30},
+            {"name": "方便面", "rate": 0.05},
+            {"name": "冲泡粥/米饭", "rate": 0.20},
+        ],
+    ),
+    "厨房用品": CategoryKnowledge(
+        name="厨房用品",
+        sub_directions=["炊具", "刀具", "厨房收纳", "烘焙工具", "小家电"],
+        known_brands=["苏泊尔", "双立人", "九阳", "美的", "张小泉", "康宁", "WMF", "爱仕达", "利仁", "摩飞", "小熊", "米家"],
+        pain_points=["粘锅", "生锈", "太沉", "烫手", "不耐刮", "漏气", "清洗困难", "占台面", "噪音大", "涂层脱落"],
+        price_range=(10, 2000, 100),
+        growth_scenarios=[
+            {"name": "小家电", "rate": 0.55},
+            {"name": "烘焙工具", "rate": 0.50},
+            {"name": "厨房收纳", "rate": 0.25},
+            {"name": "炊具", "rate": 0.10},
+            {"name": "刀具", "rate": -0.05},
+        ],
+    ),
+    "母婴用品": CategoryKnowledge(
+        name="母婴用品",
+        sub_directions=["婴儿辅食", "纸尿裤", "婴儿洗护", "早教玩具", "推车/座椅"],
+        known_brands=["贝亲", "飞利浦新安怡", "好孩子", "babycare", "全棉时代", "好奇", "帮宝适", "惠氏", "美赞臣", "合生元", "小白熊", "博朗"],
+        pain_points=["红屁股", "漏尿", "起泡", "太硬", "有BPA", "掉色过敏", "拼装复杂", "承重差", "有气味", "刻度不准"],
+        price_range=(15, 3000, 120),
+        growth_scenarios=[
+            {"name": "早教玩具", "rate": 0.55},
+            {"name": "婴儿辅食", "rate": 0.40},
+            {"name": "推车/座椅", "rate": 0.35},
+            {"name": "婴儿洗护", "rate": 0.25},
+            {"name": "纸尿裤", "rate": 0.05},
+        ],
+    ),
+    "运动健身": CategoryKnowledge(
+        name="运动健身",
+        sub_directions=["瑜伽用品", "健身器材", "运动服饰", "户外装备", "骑行用品"],
+        known_brands=["Nike", "Adidas", "Lululemon", "Under Armour", "李宁", "安踏", "Keep", "迪卡侬", "亚瑟士", "斯凯奇", "特步", "361°"],
+        pain_points=["闷汗", "掉色", "磨脚", "弹性差", "不防滑", "太硬", "有异味", "掉粉", "松动", "不好收纳"],
+        price_range=(10, 3000, 150),
+        growth_scenarios=[
+            {"name": "瑜伽用品", "rate": 0.60},
+            {"name": "骑行用品", "rate": 0.75},
+            {"name": "健身器材", "rate": 0.40},
+            {"name": "户外装备", "rate": 0.30},
+            {"name": "运动服饰", "rate": 0.10},
+        ],
+    ),
+    "美妆个护": CategoryKnowledge(
+        name="美妆个护",
+        sub_directions=["护肤品", "彩妆", "香水", "洗护发", "男士护理"],
+        known_brands=["雅诗兰黛", "兰蔻", "MAC", "花西子", "完美日记", "薇诺娜", "珀莱雅", "欧莱雅", "OLAY", "韩束", "百雀羚", "自然堂"],
+        pain_points=["拔干", "卡粉", "脱妆", "闷痘", "过敏刺痛", "不显色", "氧化快", "搓泥", "晕染", "用量太少"],
+        price_range=(19, 800, 120),
+        growth_scenarios=[
+            {"name": "护肤品", "rate": 0.35},
+            {"name": "男士护理", "rate": 0.55},
+            {"name": "香水", "rate": 0.30},
+            {"name": "洗护发", "rate": 0.15},
+            {"name": "彩妆", "rate": 0.10},
+        ],
+    ),
+    "家居清洁": CategoryKnowledge(
+        name="家居清洁",
+        sub_directions=["清洁工具", "收纳用品", "香薰/空气", "洗衣用品", "纸品湿巾"],
+        known_brands=["维达", "清风", "洁柔", "蓝月亮", "好爸爸", "威露士", "滴露", "花王", "妙洁", "3M", "宝家洁", "佳帮手"],
+        pain_points=["掉毛", "留水渍", "不耐用", "占空间", "有异味", "用量太大", "不吸水", "味道刺鼻", "容易破", "粘性不好"],
+        price_range=(3, 200, 30),
+        growth_scenarios=[
+            {"name": "香薰/空气", "rate": 0.55},
+            {"name": "清洁工具", "rate": 0.30},
+            {"name": "洗衣用品", "rate": 0.20},
+            {"name": "收纳用品", "rate": 0.15},
+            {"name": "纸品湿巾", "rate": 0.05},
+        ],
+    ),
+    "自动化设备": CategoryKnowledge(
+        name="自动化设备",
+        sub_directions=["传感器", "控制器", "执行器", "工业软件", "检测仪器"],
+        known_brands=["西门子", "施耐德", "ABB", "三菱", "欧姆龙", "松下", "汇川", "台达", "研华", "基恩士", "SICK", "倍福"],
+        pain_points=["精度不够", "响应慢", "兼容性差", "发热严重", "体积太大", "安装复杂", "寿命短", "噪音大", "维护成本高", "文档不全"],
+        price_range=(50, 10000, 500),
+        growth_scenarios=[
+            {"name": "传感器", "rate": 0.45},
+            {"name": "控制器", "rate": 0.35},
+            {"name": "检测仪器", "rate": 0.30},
+            {"name": "工业软件", "rate": 0.40},
+            {"name": "执行器", "rate": 0.20},
+        ],
+    ),
+    "办公用品": CategoryKnowledge(
+        name="办公用品",
+        sub_directions=["人体工学椅", "桌面收纳", "办公文具", "打印耗材", "白板/展示"],
         known_brands=["得力", "晨光", "齐心", "联想", "罗技", "小米", "华为", "网易严选", "西昊", "乐歌", "明基", "倍思"],
         pain_points=["发货慢", "色差严重", "不透气", "容易脏", "手感差", "支撑不够", "噪音大", "续航短", "配对困难", "夹手"],
         price_range=(2, 3000, 80),
         growth_scenarios=[
             {"name": "人体工学椅", "rate": 0.70},
-            {"name": "显示器支架", "rate": 0.50},
-            {"name": "台灯", "rate": 0.20},
-            {"name": "文具", "rate": -0.05},
-            {"name": "桌面收纳", "rate": 0.15},
+            {"name": "桌面收纳", "rate": 0.25},
+            {"name": "白板/展示", "rate": 0.20},
+            {"name": "办公文具", "rate": 0.05},
+            {"name": "打印耗材", "rate": 0.10},
         ],
     ),
     "母婴": CategoryKnowledge(
@@ -189,34 +287,51 @@ class MockDataEngine:
         return self.knowledge.get(keyword)
 
     def fuzzy_match(self, keyword: str) -> Optional[CategoryKnowledge]:
-        """模糊匹配：看 keyword 是否包含在知识库大类的 sub_directions 或 name 中"""
+        """模糊匹配：看 keyword 是否包含在知识库大类的 name 或 sub_directions 中"""
+        kw_lower = keyword.lower()
         for cat_name, knowledge in self.knowledge.items():
-            if keyword in cat_name or cat_name in keyword:
+            # 检查大类名称包含关系
+            if kw_lower in cat_name or cat_name in kw_lower:
                 return knowledge
+            # 检查细分方向包含关系（keyword 是细分方向的子串）
             for sd in knowledge.sub_directions:
-                if keyword in sd or sd in keyword:
+                sd_lower = sd.lower()
+                if kw_lower in sd_lower or sd_lower in kw_lower:
                     return knowledge
+        # 额外关键词映射（常见别名 → 知识库大类）
+        alias_map = {
+            "速食": "速食", "方便食品": "速食", "速冻": "速食", "自热": "速食",
+            "厨房": "厨房用品", "厨具": "厨房用品",
+            "母婴": "母婴用品", "婴儿": "母婴用品", "宝宝": "母婴用品",
+            "健身": "运动健身", "运动": "运动健身", "瑜伽": "运动健身",
+            "美妆": "美妆个护", "护肤": "美妆个护", "化妆品": "美妆个护", "个护": "美妆个护",
+            "清洁": "家居清洁", "清扫": "家居清洁",
+            "自动化": "自动化设备", "工业": "自动化设备", "工控": "自动化设备", "设备": "自动化设备",
+            "办公": "办公用品", "文具": "办公用品",
+            "数码": "数码配件", "手机": "数码配件", "充电": "数码配件",
+        }
+        for alias, cat_name in alias_map.items():
+            if alias in kw_lower or kw_lower in alias:
+                return self.knowledge.get(cat_name)
         return None
 
     # ----- 动态生成（知识库外关键词）-----
     def _build_dynamic_knowledge(self, keyword: str, constraints: Dict[str, Any]) -> CategoryKnowledge:
         """
         为知识库外的任意关键词动态构建知识结构
-        基于通用模板生成细分方向、品牌、痛点，绝不报错
+        生成有意义的细分方向，让它们看起来像真实电商品类
         """
         price_min = constraints.get("price_min", 5)
         price_max = constraints.get("price_max", 500)
         price_mean = (price_min + price_max) / 2
 
-        # 通用细分方向模板（任何品类都适用）
-        generic_directions = [
-            f"入门级{keyword}", f"中级{keyword}", f"高端{keyword}",
-            f"便携{keyword}", f"专业级{keyword}", f"{keyword}配件",
-            f"{keyword}套装", f"{keyword}耗材",
-        ]
+        # 有意义的细分方向模板（替代原来的"入门级/专业级"）
+        suffixes = ["基础款", "升级款", "家用款", "商用款", "高端款", "便携款",
+                    "套装", "配件", "耗材", "主题款", "定制款"]
+        generic_directions = [f"{keyword}{s}" for s in suffixes[:6]]  # 取前6个保证数量
 
         # 通用品牌
-        generic_brands = [f"品牌{k}" for k in "ABCDEFGH"] + ["白牌"]
+        generic_brands = [f"{keyword[:2]}品牌{k}" for k in "ABCDEFGH"] + ["白牌"]
 
         # 通用痛点
         generic_pain_points = [

@@ -183,6 +183,7 @@ class AnalysisOrchestrator:
                     "avg_price": price_result.get("avg_price", 0),
                     "suggested_price_entry": price_result.get("suggested_price_entry", 0),
                     "suggested_price_premium": price_result.get("suggested_price_premium", 0),
+                    "price_distribution": price_result.get("price_distribution", []),
                     "top_pain_points": pain_result.get("top_pain_points", []),
                     "message": f"「{sc_name}」分析完成，综合评分 {overall['total_score']}",
                 })

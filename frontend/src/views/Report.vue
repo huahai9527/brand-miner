@@ -240,8 +240,8 @@ const growthData = computed(() => {
 })
 
 const priceDistribution = computed(() => {
-  // Use the first subcategory's full data; Report API returns summary only
-  return report.value?.price_distribution || []
+  // 从第一个细分方向获取价格分布数据
+  return firstSubCategory.value?.price_distribution || []
 })
 
 const allPainPoints = computed(() => {
