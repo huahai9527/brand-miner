@@ -3,7 +3,7 @@
  *
  * 环境变量：
  *   开发环境（Vite dev server）：代理 /api/v1 → http://localhost:8000
- *   生产环境：VITE_API_BASE_URL → https://brand-miner-api.onrender.com
+ *   生产环境：VITE_API_BASE_URL → Railway / Render 等云端地址
  */
 import axios from 'axios'
 
