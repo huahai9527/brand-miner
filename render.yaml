@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: brand-miner-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m backend.main
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DATA_SOURCE
+        value: mock
+      - key: USE_MOCK_FALLBACK
+        value: "true"
+      - key: PORT
+        value: "8000"
