@@ -14,7 +14,16 @@
   </div>
 
   <template v-else>
-    <div class="max-w-6xl mx-auto px-4 py-8 space-y-10">
+    <div class="max-w-6xl mx-auto px-4 pt-4 pb-8 space-y-10">
+      <!-- 返回导航 -->
+      <div class="flex items-center gap-4 text-sm">
+        <RouterLink to="/" class="text-[var(--text-muted)] hover:text-white transition-colors">
+          ← 返回首页
+        </RouterLink>
+        <RouterLink :to="`/analyzing/${report.task_id || store.currentTaskId}`" class="text-[var(--text-muted)] hover:text-white transition-colors">
+          ← 返回分析
+        </RouterLink>
+      </div>
 
       <!-- === 区块一：报告头部 === -->
       <section>

@@ -90,8 +90,25 @@ class SSEManager:
                 "total_score": data["score"],
                 "recommendation": data["recommendation"],
                 "key_insight": data.get("key_insight", ""),
+                "entry_suggestion": data.get("entry_suggestion", ""),
+                "score_breakdown": data.get("score_breakdown", {}),
+                "white_brand_ratio": data.get("white_brand_ratio", 0),
+                "growth_rate": data.get("growth_rate", 0),
+                "avg_price": data.get("avg_price", 0),
+                "suggested_price_entry": data.get("suggested_price_entry", 0),
+                "suggested_price_premium": data.get("suggested_price_premium", 0),
+                "top_pain_points": data.get("top_pain_points", []),
             }
-            cache["sub_categories"].append(sub)
+            # Update existing entry or append new
+            existing_idx = None
+            for idx, sc in enumerate(cache["sub_categories"]):
+                if sc.get("name") == sub["name"]:
+                    existing_idx = idx
+                    break
+            if existing_idx is not None:
+                cache["sub_categories"][existing_idx] = sub
+            else:
+                cache["sub_categories"].append(sub)
 
         elif event_type == "analysis_done":
             cache["status"] = "ai_generating"

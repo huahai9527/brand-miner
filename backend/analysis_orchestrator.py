@@ -169,13 +169,21 @@ class AnalysisOrchestrator:
                 progress = 30 + int(completed / total_dirs * 60)
                 update_progress(progress, f"完成 {sc_name} 分析 ({completed}/{total_dirs})")
 
-                # SSE: 细分方向分析完成
+                # SSE: 细分方向分析完成（含完整数据）
                 push_sse("subcategory_done", {
                     "progress": progress,
                     "sub_category": sc_name,
                     "score": overall["total_score"],
                     "recommendation": overall["recommendation"],
                     "key_insight": overall["key_insight"],
+                    "entry_suggestion": overall.get("entry_suggestion", ""),
+                    "score_breakdown": overall.get("score_breakdown", {}),
+                    "white_brand_ratio": brand_result.get("white_brand_ratio", 0),
+                    "growth_rate": growth_result.get("growth_rate", 0),
+                    "avg_price": price_result.get("avg_price", 0),
+                    "suggested_price_entry": price_result.get("suggested_price_entry", 0),
+                    "suggested_price_premium": price_result.get("suggested_price_premium", 0),
+                    "top_pain_points": pain_result.get("top_pain_points", []),
                     "message": f"「{sc_name}」分析完成，综合评分 {overall['total_score']}",
                 })
 

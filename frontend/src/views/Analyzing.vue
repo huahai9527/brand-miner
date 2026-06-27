@@ -9,6 +9,9 @@
     <!-- 顶部状态栏 -->
     <div class="px-6 py-3 border-b border-[var(--border-subtle)] flex items-center justify-between">
       <div class="flex items-center gap-3">
+        <RouterLink to="/" class="text-sm text-[var(--text-muted)] hover:text-white transition-colors">
+          ← 返回首页
+        </RouterLink>
         <h2 class="text-sm font-semibold">
           分析中：<span class="gradient-text">{{ store.category }}</span>
         </h2>
