@@ -22,19 +22,25 @@
     <div v-if="history.length > 0" class="mt-10">
       <h3 class="text-sm font-medium text-[var(--text-secondary)] mb-3">最近分析</h3>
       <div class="space-y-2">
-        <RouterLink
+        <div
           v-for="item in history.slice(0, 3)"
           :key="item.task_id"
-          :to="item.status === 'done' ? `/report/${item.task_id}` : `/analyzing/${item.task_id}`"
-          class="block px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] border-l-2 border-l-transparent
-                 hover:bg-[var(--bg-card-hover)] hover:border-l-[var(--accent)] cursor-pointer transition-all duration-200 ease-out group"
+          @click="navigateTo(item)"
+          :class="[
+            'block px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] border-l-2 border-l-transparent',
+            'hover:bg-[var(--bg-card-hover)] hover:border-l-[var(--accent)] cursor-pointer transition-all duration-200 ease-out group',
+            loadingHistory === item.task_id ? 'cursor-wait' : ''
+          ]"
         >
           <div class="flex items-center justify-between">
-            <div>
-              <span class="text-sm font-medium text-[var(--text-primary)]">{{ item.category }}</span>
-              <span v-if="item.top_recommendation" class="ml-2 text-xs text-[var(--green)]">
-                推荐：{{ item.top_recommendation }}
-              </span>
+            <div class="flex items-center gap-2">
+              <span v-if="loadingHistory === item.task_id" class="spinner"></span>
+              <div>
+                <span class="text-sm font-medium text-[var(--text-primary)]">{{ item.category }}</span>
+                <span v-if="item.top_recommendation" class="ml-2 text-xs text-[var(--green)]">
+                  推荐：{{ item.top_recommendation }}
+                </span>
+              </div>
             </div>
             <div class="flex items-center gap-3">
               <span class="text-xs text-[var(--text-muted)]">{{ formatDate(item.created_at) }}</span>
@@ -43,7 +49,7 @@
               </span>
             </div>
           </div>
-        </RouterLink>
+        </div>
       </div>
     </div>
 
@@ -64,6 +70,7 @@ import DataSourceBadge from '../components/DataSourceBadge.vue'
 const router = useRouter()
 const store = useAnalysisStore()
 const history = ref([])
+const loadingHistory = ref(null)
 
 onMounted(async () => {
   try {
@@ -79,6 +86,12 @@ const handleStart = async (category, constraints) => {
   } catch (e) {
     console.error('启动分析失败:', e)
   }
+}
+
+const navigateTo = (item) => {
+  loadingHistory.value = item.task_id
+  const path = item.status === 'done' ? `/report/${item.task_id}` : `/analyzing/${item.task_id}`
+  router.push(path)
 }
 
 const formatDate = (d) => {

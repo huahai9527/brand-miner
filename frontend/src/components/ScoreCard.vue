@@ -3,18 +3,25 @@
   Props:
     result: { name, total_score, recommendation, key_insight, ... }
     compact: Boolean (compact mode for report list)
+    dimmed: Boolean (dimmed state when another card is loading)
 -->
 <template>
   <div
-    class="rounded-xl bg-[var(--bg-card)] border transition-all duration-200 ease-out animate-slide-in-right cursor-pointer
+    class="relative rounded-xl bg-[var(--bg-card)] border transition-all duration-200 ease-out animate-slide-in-right cursor-pointer
            hover:border-[var(--accent)] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]"
     :class="[
       compact ? 'p-3' : 'p-4',
       recommendation === 'recommended'
         ? 'border-l-2 border-l-[var(--green)] border-[var(--border-subtle)]'
-        : 'border-[var(--border-subtle)]'
+        : 'border-[var(--border-subtle)]',
+      dimmed ? 'opacity-50' : ''
     ]"
   >
+    <!-- 加载遮罩 -->
+    <div v-if="dimmed" class="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center z-10">
+      <div class="spinner"></div>
+    </div>
+
     <div class="flex items-start justify-between gap-3">
       <div class="flex-1 min-w-0">
         <!-- 名称 + 标签 -->
@@ -77,6 +84,7 @@ import { computed } from 'vue'
 const props = defineProps({
   result: { type: Object, required: true },
   compact: { type: Boolean, default: false },
+  dimmed: { type: Boolean, default: false },
 })
 
 const circumference = 2 * Math.PI * 15.5

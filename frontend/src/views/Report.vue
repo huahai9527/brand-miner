@@ -3,6 +3,11 @@
   从 /api/v1/analysis/{taskId}/result 获取完整数据
 -->
 <template>
+  <!-- 顶部加载进度条 -->
+  <div v-if="loading" class="fixed top-0 left-0 w-full h-[3px] z-50">
+    <div class="h-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] progress-bar"></div>
+  </div>
+
   <div v-if="loading" class="flex items-center justify-center h-64">
     <span class="text-sm text-[var(--text-muted)]">加载报告中...</span>
   </div>

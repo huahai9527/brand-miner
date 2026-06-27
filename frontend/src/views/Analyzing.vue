@@ -17,15 +17,19 @@
         </h2>
         <span v-if="store.taskStatus === 'running'" class="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></span>
       </div>
-      <RouterLink
+      <button
         v-if="store.taskStatus === 'done'"
-        :to="`/report/${store.currentTaskId}`"
+        @click="goToReport"
+        :disabled="loadingReport"
         class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]
-               text-white text-sm font-medium hover:shadow-lg hover:shadow-[var(--accent)]/20
-               transition-all btn-glow"
+               text-white text-sm font-medium transition-all btn-glow
+               disabled:opacity-75 disabled:cursor-wait"
       >
-        查看完整报告 →
-      </RouterLink>
+        <span v-if="loadingReport" class="inline-flex items-center gap-2">
+          <span class="spinner"></span>加载中...
+        </span>
+        <span v-else>查看完整报告 →</span>
+      </button>
     </div>
 
     <!-- 主要内容区 -->
@@ -43,6 +47,8 @@
             :key="result.name"
             :result="result"
             :style="{ animationDelay: i * 0.08 + 's' }"
+            :dimmed="loadingCard && loadingCard !== result.name"
+            @click="goToReportFromCard(result.name)"
           />
         </div>
 
@@ -67,6 +73,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAnalysisStore } from '../stores/analysis'
@@ -74,7 +82,11 @@ import ThinkingStream from '../components/ThinkingStream.vue'
 import ScoreCard from '../components/ScoreCard.vue'
 
 const route = useRoute()
+const router = useRouter()
 const store = useAnalysisStore()
+
+const loadingReport = ref(false)
+const loadingCard = ref(null)
 
 onMounted(() => {
   const taskId = route.params.taskId || store.currentTaskId
@@ -88,4 +100,14 @@ onUnmounted(() => {
     store.disconnectSSE()
   }
 })
+
+const goToReport = () => {
+  loadingReport.value = true
+  router.push(`/report/${store.currentTaskId}`)
+}
+
+const goToReportFromCard = (name) => {
+  loadingCard.value = name
+  router.push(`/report/${store.currentTaskId}`)
+}
 </script>
