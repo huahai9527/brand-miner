@@ -185,7 +185,7 @@ class AnalysisOrchestrator:
                     "suggested_price_premium": price_result.get("suggested_price_premium", 0),
                     "price_distribution": price_result.get("price_distribution", []),
                     "top_pain_points": pain_result.get("top_pain_points", []),
-                    "message": f"「{sc_name}」分析完成，综合评分 {overall['total_score']}",
+                    "message": overall.get("key_insight", f"「{sc_name}」分析完成"),
                 })
 
             return {

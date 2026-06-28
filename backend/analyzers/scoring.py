@@ -176,11 +176,11 @@ def _generate_key_insight(
     recommendation: str,
     score_breakdown: Dict[str, Any],
 ) -> str:
-    """生成一句话核心洞察（面试展示用）"""
+    """生成一句话核心洞察 — 基于四维数据差异化"""
 
-    # 找出最高分和最低分的维度
-    best_dim_key = max(score_breakdown, key=lambda k: score_breakdown[k]["score"])
-    worst_dim_key = min(score_breakdown, key=lambda k: score_breakdown[k]["score"])
+    scores = {k: v["score"] for k, v in score_breakdown.items()}
+    best_dim_key = max(scores, key=scores.get)
+    best_score = scores[best_dim_key]
 
     dim_labels = {
         "brand_vacuum": "品牌真空度",
@@ -189,24 +189,54 @@ def _generate_key_insight(
         "price_profit": "利润空间",
     }
 
-    best_label = dim_labels.get(best_dim_key, best_dim_key)
-    worst_label = dim_labels.get(worst_dim_key, worst_dim_key)
+    # 分数偏低 → 谨慎建议
+    if total_score < 65:
+        return (
+            f"「{sub_category}」竞争较激烈（{total_score}分），"
+            f"建议充分调研后谨慎入场"
+        )
 
-    if recommendation == "recommended":
+    # 品牌真空度最高（>75）→ 强调品牌集中度低
+    if best_dim_key == "brand_vacuum" and best_score > 75:
         return (
-            f"「{sub_category}」综合得分 {total_score}，{best_label}表现突出，"
-            f"市场存在明确的蓝海机会，建议优先考虑切入"
+            f"「{sub_category}」品牌集中度低，白牌占比高，"
+            f"非品牌商家切入阻力小（品牌真空度{best_score:.0f}分）"
         )
-    elif recommendation == "neutral":
+
+    # 增长信号最高（>75）→ 强调市场上升期
+    if best_dim_key == "growth_signal" and best_score > 75:
         return (
-            f"「{sub_category}」综合得分 {total_score}，{best_label}可圈可点，"
-            f"但{worst_label}存在短板，需要充分准备再入局"
+            f"「{sub_category}」市场处于上升期，新品活跃度高，"
+            f"需求增长明显（增长信号{best_score:.0f}分）"
         )
-    else:
+
+    # 痛点密度最高（>75）→ 强调品质升级机会
+    if best_dim_key == "pain_point" and best_score > 75:
         return (
-            f"「{sub_category}」综合得分 {total_score}，{worst_label}短板明显，"
-            f"当前不建议仓促切入"
+            f"「{sub_category}」用户差评集中，"
+            f"存在明显品质升级机会（痛点机会{best_score:.0f}分）"
         )
+
+    # 价格利润最高（>75）→ 强调利润空间
+    if best_dim_key == "price_profit" and best_score > 75:
+        return (
+            f"「{sub_category}」价格带分散，部分区间竞争较少，"
+            f"利润空间可观（利润空间{best_score:.0f}分）"
+        )
+
+    # 综合分数高但无明显单项突出 → 均衡型
+    if total_score >= 70:
+        return (
+            f"「{sub_category}」四维表现均衡（{total_score}分），"
+            f"适合稳健型商家切入"
+        )
+
+    # 中等分数 → 一般性描述
+    best_label = dim_labels.get(best_dim_key, "")
+    return (
+        f"「{sub_category}」{best_label}相对突出（{best_score:.0f}分），"
+        f"综合评分{total_score}分，可考虑试水"
+    )
 
 
 def _generate_entry_suggestion(
@@ -217,22 +247,42 @@ def _generate_entry_suggestion(
     price: Dict,
     constraints: Dict,
 ) -> str:
-    """生成详细的切入策略建议"""
+    """生成差异化切入策略建议"""
     parts = []
 
     if recommendation == "recommended":
         parts.append("策略建议：强势切入")
-        if pain.get("improvement_opportunities"):
-            parts.append(f"差异化抓手：{pain['improvement_opportunities'][0]}")
-        parts.append(
-            f"定价建议：¥{price.get('suggested_price_entry', 0)}（低破局）"
-            f" 或 ¥{price.get('suggested_price_premium', 0)}（品质溢价）"
-        )
+
+        # 根据最强维度给出不同建议
+        scores = {
+            "brand": brand.get("score", 0),
+            "growth": growth.get("score", 0),
+            "pain": pain.get("score", 0),
+            "price": price.get("score", 0),
+        }
+        best_dim = max(scores, key=scores.get)
+
+        if best_dim == "brand":
+            parts.append("利用品牌真空红利，以性价比策略快速入场")
+        elif best_dim == "growth":
+            parts.append("抓住上升期窗口，扩大曝光抢占增量用户")
+        elif best_dim == "pain":
+            if pain.get("top_pain_points"):
+                top_pain = pain["top_pain_points"][0]["keyword"]
+                parts.append(f"针对「{top_pain}」痛点做差异化升级，以品质溢价切入")
+            else:
+                parts.append("针对用户痛点做品质升级，以差异化切入")
+        else:
+            parts.append(
+                f"入场价 ¥{price.get('suggested_price_entry', 0)} 起量，"
+                f"溢价线 ¥{price.get('suggested_price_premium', 0)} 提利润"
+            )
+
     elif recommendation == "neutral":
         parts.append("策略建议：谨慎试探")
-        parts.append("建议先用少量 SKU 测试市场反馈，验证数据模型后再扩大投入")
+        parts.append("建议先用少量 SKU 测试市场反馈，验证数据后再扩大投入")
     else:
         parts.append("策略建议：暂时观望")
-        parts.append("建议关注市场变化，等待品牌真空度或增长信号改善后再入局")
+        parts.append("建议关注市场变化，等待竞争格局改善后入局")
 
     return "；".join(parts)
