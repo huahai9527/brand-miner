@@ -26,6 +26,44 @@
 
 ---
 
+## 项目数据
+
+| 指标 | 数值 |
+|------|------|
+| 代码量 | Python 4,079 行 + Vue/JS/CSS 1,663 行 = 5,742 行 |
+| 后端文件 | 29 个 Python 文件（6 大模块） |
+| 前端组件 | 7 个页面 + 6 个可视化组件 |
+| 品类覆盖 | 40+ 电商品类 × 6-8 细分方向 = 300+ 细分 |
+| 品牌词库 | 480+ 品牌（每品类 12 个真实品牌） |
+| 别名映射 | 150+ 条模糊匹配规则 |
+| API 接口 | 8 个 REST 端点（5 GET + 1 POST + 2 SSE） |
+| 分析耗时 | 完整流程 15-25 秒（含 AI 报告生成 7-10s） |
+| 并发能力 | asyncio.gather 并行，串行 5s → 并行 1.5s |
+| SSE 事件类型 | 10 种（task_start → data_fetching → analysis_done → ai_report_done） |
+| LLM 容错 | 3 层（超时 30s → 全异常捕获 → 模板降级） |
+
+---
+
+## 项目架构
+
+```
+Vue 3 前端（brand-miner.pages.dev）
+  ├── Home.vue         — 品类输入 + 约束条件 + 历史记录
+  ├── Analyzing.vue     — 实时分析（SSE 消费 + 卡片渲染）
+  └── Report.vue        — 完整报告（7 区块 + 4 种图表）
+
+FastAPI 后端（Railway）
+  ├── api/routes/        — 8 个端点（health/analysis/search/price/report）
+  ├── analysis_orchestrator.py — 分析编排引擎（463 行，核心逻辑）
+  ├── analyzers/         — 4 个分析模块（品牌真空/增长信号/痛点/价格）
+  ├── data_sources/      — 3 层数据源适配器
+  ├── ai/                — LLM 客户端 + 报告生成器
+  ├── database/          — SQLAlchemy 2.0 异步 ORM（models/session）
+  └── sse_manager.py     — asyncio.Queue SSE 事件总线
+```
+
+---
+
 ## 📌 AI 开发方向（简历描述）
 
 > **Brand Miner — 智能选品决策引擎**（全栈独立开发）
