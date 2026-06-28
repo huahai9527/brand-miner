@@ -357,6 +357,111 @@ BUILTIN_KNOWLEDGE = {
         price_range=(2, 500, 30),
         growth_scenarios=[{"name": "办公桌垫", "rate": 0.40}, {"name": "打印纸", "rate": 0.10}, {"name": "便利贴", "rate": 0.20}, {"name": "文件夹", "rate": 0.05}, {"name": "订书机打孔器", "rate": 0.15}],
     ),
+    # ── 具体品类精确匹配（优先级高于大类）──
+    "蓝牙耳机": CategoryKnowledge(
+        name="蓝牙耳机",
+        sub_directions=["真无线TWS耳机", "头戴式蓝牙耳机", "颈挂式蓝牙耳机", "骨传导耳机", "运动蓝牙耳机", "主动降噪耳机", "游戏蓝牙耳机"],
+        known_brands=["Apple", "Sony", "Bose", "华为", "小米", "漫步者", "Anker Soundcore", "三星", "Beats", "JBL", "万魔", "QCY"],
+        pain_points=["断连频繁", "延迟高", "佩戴不舒服", "续航太短", "音质差", "降噪效果差", "底噪大", "充电盒松"],
+        price_range=(50, 2500, 300),
+        growth_scenarios=[{"name": "真无线TWS耳机", "rate": 0.50}, {"name": "主动降噪耳机", "rate": 0.55}, {"name": "骨传导耳机", "rate": 0.60}, {"name": "头戴式", "rate": 0.20}, {"name": "运动蓝牙耳机", "rate": 0.35}],
+    ),
+    "手机壳": CategoryKnowledge(
+        name="手机壳",
+        sub_directions=["透明保护壳", "皮质翻盖壳", "磁吸壳", "防摔壳", "液态硅胶壳", "镜头保护壳", "卡包壳"],
+        known_brands=["倍思", "绿联", "Spigen", "UAG", "OtterBox", "CASETiFY", "闪魔", "图拉斯", "品胜", "摩米士", "决色", "PITAKA"],
+        pain_points=["发黄", "不合尺寸", "挡按键", "滑手", "太重", "掉色", "翘边", "开孔歪"],
+        price_range=(5, 200, 30),
+        growth_scenarios=[{"name": "磁吸壳", "rate": 0.65}, {"name": "透明保护壳", "rate": 0.30}, {"name": "防摔壳", "rate": 0.40}, {"name": "液态硅胶壳", "rate": 0.35}, {"name": "卡包壳", "rate": 0.25}],
+    ),
+    "充电宝": CategoryKnowledge(
+        name="充电宝",
+        sub_directions=["小容量便携充电宝", "大容量充电宝", "磁吸无线充电宝", "快充充电宝", "薄型充电宝", "太阳能充电宝"],
+        known_brands=["罗马仕", "小米", "品胜", "Anker", "倍思", "华为", "紫米", "飞利浦", "爱国者", "Mophie", "公牛", "ROCK"],
+        pain_points=["充电慢", "虚标容量", "发烫", "太重", "接口松", "不耐用", "体积大", "电充不满"],
+        price_range=(20, 400, 80),
+        growth_scenarios=[{"name": "磁吸无线充电宝", "rate": 0.70}, {"name": "快充充电宝", "rate": 0.55}, {"name": "薄型充电宝", "rate": 0.45}, {"name": "小容量便携", "rate": 0.25}, {"name": "大容量", "rate": 0.15}],
+    ),
+    "机械键盘": CategoryKnowledge(
+        name="机械键盘",
+        sub_directions=["游戏机械键盘", "办公机械键盘", "矮轴机械键盘", "无线机械键盘", "客制化键盘", "迷你60%配列键盘"],
+        known_brands=["Cherry", "罗技", "雷蛇", "海盗船", "Filco", "Leopold", "达尔优", "RK", "Keychron", "阿米洛", "IKBC", "腹灵"],
+        pain_points=["轴体弹簧音", "键帽打油", "连击双击", "蓝牙断连", "灯光不亮", "整体太重", "线太硬", "键帽脱落"],
+        price_range=(100, 2000, 400),
+        growth_scenarios=[{"name": "客制化键盘", "rate": 0.65}, {"name": "无线机械键盘", "rate": 0.55}, {"name": "矮轴键盘", "rate": 0.50}, {"name": "游戏机械键盘", "rate": 0.25}, {"name": "迷你配列", "rate": 0.45}],
+    ),
+    "瑜伽垫": CategoryKnowledge(
+        name="瑜伽垫",
+        sub_directions=["PVC瑜伽垫", "TPE瑜伽垫", "天然橡胶瑜伽垫", "折叠瑜伽垫", "加厚瑜伽垫", "防滑专业瑜伽垫"],
+        known_brands=["Keep", "Lululemon", "迪卡侬", "Yottoy", "Manduka", "Liforme", "哈他", "Atmananda", "青鸟", "悦步", "伽姑娘", "奥义"],
+        pain_points=["有异味", "打滑", "太薄", "脱胶", "压扁不回弹", "掉渣", "不好收纳", "标记线不准"],
+        price_range=(20, 500, 80),
+        growth_scenarios=[{"name": "天然橡胶瑜伽垫", "rate": 0.55}, {"name": "防滑专业瑜伽垫", "rate": 0.45}, {"name": "TPE瑜伽垫", "rate": 0.30}, {"name": "PVC瑜伽垫", "rate": 0.10}, {"name": "折叠瑜伽垫", "rate": 0.35}],
+    ),
+    "跑步鞋": CategoryKnowledge(
+        name="跑步鞋",
+        sub_directions=["公路跑步鞋", "越野跑步鞋", "轻量竞速鞋", "缓震跑步鞋", "稳定支撑跑步鞋", "入门跑步鞋"],
+        known_brands=["Nike", "Adidas", "亚瑟士", "索康尼", "布鲁克斯", "New Balance", "Hoka", "On", "李宁", "安踏", "特步", "361°"],
+        pain_points=["磨脚", "鞋底太硬", "不透气", "开胶", "鞋面断裂", "鞋码偏小", "鞋舌歪", "不耐磨"],
+        price_range=(100, 2000, 400),
+        growth_scenarios=[{"name": "缓震跑步鞋", "rate": 0.35}, {"name": "轻量竞速鞋", "rate": 0.50}, {"name": "越野跑步鞋", "rate": 0.45}, {"name": "入门跑步鞋", "rate": 0.20}, {"name": "稳定支撑", "rate": 0.25}],
+    ),
+    "空气炸锅": CategoryKnowledge(
+        name="空气炸锅",
+        sub_directions=["小容量空气炸锅", "大容量家用空气炸锅", "可视空气炸锅", "智能WiFi空气炸锅", "烤箱一体机", "双层空气炸锅"],
+        known_brands=["飞利浦", "九阳", "美的", "小熊", "苏泊尔", "利仁", "摩飞", "西屋", "荣事达", "米家", "松下", "新飞"],
+        pain_points=["噪音大", "容量太小", "清洗困难", "温度不准", "涂层脱落", "有塑料味", "加热不均", "外壳发烫"],
+        price_range=(100, 1000, 300),
+        growth_scenarios=[{"name": "可视空气炸锅", "rate": 0.65}, {"name": "智能WiFi", "rate": 0.50}, {"name": "烤箱一体机", "rate": 0.55}, {"name": "双层", "rate": 0.40}, {"name": "小容量", "rate": 0.20}],
+    ),
+    "咖啡机": CategoryKnowledge(
+        name="咖啡机",
+        sub_directions=["全自动咖啡机", "半自动意式咖啡机", "胶囊咖啡机", "手冲咖啡壶", "摩卡壶", "冷萃咖啡壶"],
+        known_brands=["德龙", "飞利浦", "Nespresso", "Breville", "WMF", "SMEG", "东菱", "小熊", "百胜图", "磨客", "Hero", "泰摩"],
+        pain_points=["萃取不足", "漏水", "噪音大", "清洗麻烦", "奶泡不够细", "出咖啡慢", "塑料味", "水箱太小"],
+        price_range=(50, 5000, 600),
+        growth_scenarios=[{"name": "胶囊咖啡机", "rate": 0.40}, {"name": "全自动咖啡机", "rate": 0.35}, {"name": "冷萃咖啡壶", "rate": 0.55}, {"name": "手冲咖啡壶", "rate": 0.30}, {"name": "半自动意式", "rate": 0.25}],
+    ),
+    "洗面奶": CategoryKnowledge(
+        name="洗面奶",
+        sub_directions=["氨基酸洁面", "泡沫洁面", "磨砂洁面", "卸妆洁面二合一", "男士洁面", "敏感肌洁面"],
+        known_brands=["芙丽芳丝", "雅诗兰黛", "薇诺娜", "珂润", "EltaMD", "丝塔芙", "理肤泉", "至本", "旁氏", "大宝", "欧莱雅", "相宜本草"],
+        pain_points=["洗完紧绷", "不起泡", "刺激眼睛", "假滑", "闷痘", "脱皮", "味道太香", "瓶口难挤"],
+        price_range=(20, 400, 80),
+        growth_scenarios=[{"name": "氨基酸洁面", "rate": 0.50}, {"name": "敏感肌洁面", "rate": 0.45}, {"name": "男士洁面", "rate": 0.40}, {"name": "泡沫洁面", "rate": 0.20}, {"name": "卸妆二合一", "rate": 0.35}],
+    ),
+    "面膜": CategoryKnowledge(
+        name="面膜",
+        sub_directions=["补水保湿面膜", "美白淡斑面膜", "清洁控油面膜", "睡眠面膜", "修护面膜", "男士面膜"],
+        known_brands=["蒂佳婷", "SK-II", "兰蔻", "理肤泉", "敷尔佳", "自然堂", "珀莱雅", "相宜本草", "一叶子", "美即", "御泥坊", "百雀羚"],
+        pain_points=["精华液少", "过敏刺痛", "不服帖", "效果不明显", "面膜纸粗糙", "味道怪", "闷痘", "剪裁不合理"],
+        price_range=(10, 300, 50),
+        growth_scenarios=[{"name": "修护面膜", "rate": 0.50}, {"name": "睡眠面膜", "rate": 0.45}, {"name": "清洁控油面膜", "rate": 0.30}, {"name": "补水保湿面膜", "rate": 0.15}, {"name": "男士面膜", "rate": 0.40}],
+    ),
+    "防晒霜": CategoryKnowledge(
+        name="防晒霜",
+        sub_directions=["面部防晒霜", "身体防晒", "喷雾防晒", "儿童防晒", "军训防晒", "户外高倍防晒"],
+        known_brands=["安热沙", "理肤泉", "兰蔻", "薇诺娜", "碧柔", "曼秀雷敦", "雅漾", "资生堂", "欧莱雅", "怡思丁", "Mistine", "珀莱雅"],
+        pain_points=["油腻", "搓泥", "假白", "过敏", "防晒力不够", "闷痘", "不好推开", "酒精味重"],
+        price_range=(20, 400, 100),
+        growth_scenarios=[{"name": "户外高倍防晒", "rate": 0.45}, {"name": "喷雾防晒", "rate": 0.40}, {"name": "儿童防晒", "rate": 0.50}, {"name": "面部防晒霜", "rate": 0.20}, {"name": "军训防晒", "rate": 0.35}],
+    ),
+    "猫粮": CategoryKnowledge(
+        name="猫粮",
+        sub_directions=["幼猫粮", "成猫粮", "老年猫粮", "无谷猫粮", "冻干猫粮", "处方猫粮"],
+        known_brands=["皇家", "冠能", "爱肯拿", "渴望", "麦富迪", "网易严选", "伯纳天纯", "素力高", "go!", "now", "卫仕", "比瑞吉"],
+        pain_points=["适口性差", "猫不爱吃", "成分不清晰", "颗粒太硬", "有异味", "吃后软便", "油腻", "碎渣多"],
+        price_range=(20, 600, 100),
+        growth_scenarios=[{"name": "冻干猫粮", "rate": 0.65}, {"name": "无谷猫粮", "rate": 0.50}, {"name": "处方猫粮", "rate": 0.40}, {"name": "幼猫粮", "rate": 0.25}, {"name": "成猫粮", "rate": 0.10}],
+    ),
+    "狗粮": CategoryKnowledge(
+        name="狗粮",
+        sub_directions=["幼犬粮", "成犬粮", "老年犬粮", "小型犬粮", "大型犬粮", "无谷狗粮"],
+        known_brands=["皇家", "比瑞吉", "伯纳天纯", "耐威克", "海洋之星", "麦富迪", "蓝氏", "渴望", "爱肯拿", "now", "卫仕", "疯狂小狗"],
+        pain_points=["适口性差", "狗不爱吃", "颗粒太大", "吃后拉稀", "有异味", "油腻", "成分不清", "包装难撕"],
+        price_range=(20, 600, 100),
+        growth_scenarios=[{"name": "无谷狗粮", "rate": 0.50}, {"name": "小型犬粮", "rate": 0.40}, {"name": "大型犬粮", "rate": 0.35}, {"name": "幼犬粮", "rate": 0.25}, {"name": "成犬粮", "rate": 0.10}],
+    ),
 }
 
 
@@ -400,13 +505,13 @@ ALIAS_MAP = {
     "帽子": "配饰", "眼镜": "配饰",
     # 数码
     "手机壳": "手机配件", "手机膜": "手机配件", "充电器": "手机配件",
-    "充电宝": "手机配件", "数据线": "手机配件", "手机支架": "手机配件",
+    "充电宝": "充电宝", "数据线": "手机配件", "手机支架": "手机配件",
     "手机": "手机配件", "充电": "手机配件",
-    "耳机": "耳机音频", "音箱": "耳机音频", "蓝牙耳机": "耳机音频",
+    "耳机": "耳机音频", "音箱": "耳机音频", "蓝牙耳机": "蓝牙耳机",
     "音频": "耳机音频",
     "键盘": "电脑配件", "鼠标": "电脑配件", "显示器": "电脑配件",
     "笔记本": "电脑配件", "U盘": "电脑配件", "硬盘": "电脑配件",
-    "电脑": "电脑配件", "PC": "电脑配件",
+    "电脑": "电脑配件", "PC": "电脑配件", "机械键盘": "机械键盘",
     "智能": "智能设备", "手表": "智能设备", "扫地机": "智能设备",
     "机器人": "智能设备", "无人机": "摄影器材", "相机": "摄影器材",
     "摄影": "摄影器材", "镜头": "摄影器材",
@@ -452,6 +557,15 @@ ALIAS_MAP = {
     "文具": "学生文具", "笔": "学生文具", "笔记本本子": "学生文具",
     "书包": "学生文具",
     "办公": "办公用品", "打印": "办公用品", "文件夹": "办公用品",
+    # 具体品类精确匹配
+    "瑜伽": "健身器材", "瑜伽垫": "瑜伽垫",
+    "跑步鞋": "跑步鞋", "跑鞋": "跑步鞋",
+    "空气炸锅": "空气炸锅", "炸锅": "空气炸锅",
+    "咖啡机": "咖啡机", "咖啡": "咖啡机",
+    "洗面奶": "洗面奶", "洁面": "洗面奶",
+    "面膜": "面膜",
+    "防晒": "防晒霜", "防晒霜": "防晒霜",
+    "猫粮": "猫粮", "狗粮": "狗粮",
     # 工业
     "自动化": "自动化设备", "工业": "自动化设备", "工控": "自动化设备",
     "设备": "自动化设备", "传感器": "自动化设备",
@@ -469,23 +583,23 @@ class MockDataEngine:
         return self.knowledge.get(keyword)
 
     def fuzzy_match(self, keyword: str) -> Optional[CategoryKnowledge]:
-        """模糊匹配：别名映射 → 精确匹配 → 子串包含 → 细分方向匹配"""
+        """模糊匹配：精确匹配 → 具体品类关键词 → 别名映射 → 大类 → 细分方向"""
         kw_lower = keyword.lower()
 
-        # 1. 别名映射
+        # 1. 先精确匹配 BUILTIN_KNOWLEDGE key（包括具体品类）
+        if found := self.knowledge.get(keyword):
+            return found
+
+        # 2. 模糊匹配具体品类名称（keyword 出现在 knowledge key 中）
+        for cat_key, knowledge in self.knowledge.items():
+            if kw_lower == cat_key.lower() or kw_lower in cat_key.lower() or cat_key.lower() in kw_lower:
+                return knowledge
+
+        # 3. 别名映射
         for alias, cat_name in ALIAS_MAP.items():
             if alias in kw_lower or kw_lower in alias:
                 if found := self.knowledge.get(cat_name):
                     return found
-
-        # 2. 精确匹配
-        if found := self.knowledge.get(keyword):
-            return found
-
-        # 3. 大类名称包含关系
-        for cat_name, knowledge in self.knowledge.items():
-            if kw_lower in cat_name.lower() or cat_name.lower() in kw_lower:
-                return knowledge
 
         # 4. 细分方向匹配
         for knowledge in self.knowledge.values():
